@@ -8,6 +8,9 @@ public class Ping implements MessageCreateListener
     @Override
     public void onMessageCreate(MessageCreateEvent message) 
     {
-        
+        if (message.getMessageContent().equalsIgnoreCase(Main.Prefix + "ping"))
+        {
+            message.getChannel().sendMessage("Pong!");
+        }
     }
 }

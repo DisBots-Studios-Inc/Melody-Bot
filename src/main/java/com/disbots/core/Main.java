@@ -14,9 +14,9 @@ public class Main
 
         System.out.println("Bot Online, Loading resources");
 
-        Client.addListener(new Ping());
+        Bot.addListener(new Ping());
 
-        System.out.println("Loading listeners: " + Arrays.stream(Client.getListeners().values().toArray()).count());
+        System.out.println("Loading listeners: " + Arrays.stream(Bot.getListeners().values().toArray()).count());
         System.out.println("Loaded listeners");
         System.out.println("Loading resources...");
         System.out.println("Loaded resources! Ready for operation!");
