@@ -4,9 +4,11 @@ import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import com.disbots.commands.Ping;
 import java.util.Arrays;
+import java.lang.String;
 
 public class Main
 {
+    public static final String Prefix = ".";
 
     public static void main(String[] args)
     {
