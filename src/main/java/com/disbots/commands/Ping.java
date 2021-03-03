@@ -2,6 +2,7 @@ package com.disbots.commands;
 
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
+import com.disbots.core.Main;
 
 public class Ping implements MessageCreateListener
 {

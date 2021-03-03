@@ -2,6 +2,8 @@ package com.disbots.core;
 
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
+import com.disbots.commands.Ping;
+import java.util.Arrays;
 
 public class Main
 {
