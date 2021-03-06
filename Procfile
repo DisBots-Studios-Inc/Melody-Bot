@@ -1,1 +1,1 @@
-worker: java -jar build/libs/Melody-Bot-0.1-ALPHA-all.jar
+worker: java -jar build/libs/Melody-Bot-0.1.0b-all.jar
