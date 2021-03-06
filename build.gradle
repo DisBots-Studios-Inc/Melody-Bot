@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.disbots'
-version '0.1-ALPHA'
+version '0.1.0b'
 
 repositories {
     mavenCentral()
@@ -23,7 +23,7 @@ build.mustRunAfter test
 
 jar {
     manifest{
-        attributes 'Class-Path': '/libs/Melody-Bot-0.1-ALPHA-all.jar', 'Main-Class': 'com.disbots.core.Main'
+        attributes 'Class-Path': '/libs/Melody-Bot-0.1.0b-all.jar', 'Main-Class': 'com.disbots.core.Main'
     }
 }
 
