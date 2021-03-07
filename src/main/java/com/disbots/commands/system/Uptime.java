@@ -1,6 +1,7 @@
-package com.disbots.commands.information;
+package com.disbots.commands.system;
 
 import com.disbots.core.Main;
+import com.disbots.utilities.EmbedColors;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
@@ -18,8 +19,8 @@ public class Uptime implements MessageCreateListener
             EmbedBuilder UptimeEmbed = new EmbedBuilder()
                     .setTitle("Uptime")
                     .setDescription("The Bot has been online for " + CalculateEvalTime(Main.TimeWhenStarted) + " seconds")
-                    .setColor(new Color(42, 179, 7))
-                    .setFooter("", message.getMessageAuthor().getAvatar());
+                    .setColor(EmbedColors.NEUTRAL.getCode())
+                    .setFooter(message.getMessageAuthor().getDisplayName(), message.getMessageAuthor().getAvatar());
             message.getChannel().sendMessage(UptimeEmbed);
         }
     }
