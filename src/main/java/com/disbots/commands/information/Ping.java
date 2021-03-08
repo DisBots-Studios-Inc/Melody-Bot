@@ -1,5 +1,7 @@
 package com.disbots.commands.information;
 
+import com.disbots.utilities.EmbedColors;
+import com.disbots.utilities.Log;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
@@ -25,12 +27,11 @@ public class Ping implements MessageCreateListener
             catch (InterruptedException e)
             {
                 EmbedBuilder ErrorEmbed = new EmbedBuilder()
-                        .setTitle("Fatal Error!")
-                        .setDescription("Fatal Error, While calculating Eval Time! Please contact Disbots inc.")
+                        .setDescription("There was an error evaluating the latency! Please contact DisBots Inc.")
                         .setFooter("", message.getMessageAuthor().getAvatar())
-                        .setColor(new Color(255,0,0));
+                        .setColor(EmbedColors.ERROR.getCode());
                 message.getChannel().sendMessage(ErrorEmbed);
-                e.printStackTrace();
+                new Log().error("Error while evaluating latency in a guild\n>" + e, "");
             }
         }
     }
@@ -57,23 +58,21 @@ public class Ping implements MessageCreateListener
     {
         Long EvalTime = GetEvalTime();
 
-        Color InitialPingEmbedColor = new Color(255, 121, 44);
-        Color PingEmbedColor = new Color(42, 179, 7);
         long GatewayLatency = message.getApi().getLatestGatewayLatency().toMillis();
         CompletableFuture<Void> RESTLatency = message.getApi().measureRestLatency().thenAccept(Time -> {
             EmbedBuilder InitialPing = new EmbedBuilder()
-                    .setTitle("**Testing Ping... :ping_pong:**")
-                    .setColor(InitialPingEmbedColor)
+                    .setDescription(":ping_pong: Testing Ping...")
+                    .setColor(EmbedColors.NEUTRAL.getCode())
                     .setFooter("", message.getMessageAuthor().getAvatar());
 
             EmbedBuilder PingEmbed = new EmbedBuilder()
-                    .setTitle("**Latency of the bot:** ")
-                    .setDescription("This says the current latency of the bot:\n" +
-                            "**Evaluation Time** - " + EvalTime + "ms\n" +
-                            "**Bot Latency** - " + GatewayLatency + "ms\n" +
-                            "**Rest latency** - " + Time.toMillis() + "ms\n")
-                    .setFooter("Please report if more than 1000ms", message.getMessageAuthor().getAvatar())
-                    .setColor(PingEmbedColor);
+                    .setTitle(":ping_pong: Pong!")
+                    .setDescription(
+                            "Evaluation Time: " + "**"+EvalTime+"**" + "ms\n" +
+                            "Bot Latency: " + "**"+GatewayLatency+"**" + "ms\n" +
+                            "Rest latency: " + "**"+Time.toMillis()+"**" + "ms\n")
+                    .setFooter(message.getMessageAuthor().getDisplayName(), message.getMessageAuthor().getAvatar())
+                    .setColor(EmbedColors.NEUTRAL.getCode());
 
             message.getChannel().sendMessage(InitialPing).thenAccept(MessageToBeEdited -> MessageToBeEdited.getApi().getThreadPool().getScheduler().schedule(() -> {
                 MessageToBeEdited.edit(PingEmbed);
