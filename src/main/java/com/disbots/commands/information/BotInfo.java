@@ -1,12 +1,11 @@
 package com.disbots.commands.information;
 
+import com.disbots.commands.system.Uptime;
 import com.disbots.core.Main;
 import com.disbots.utilities.EmbedColors;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
-
-import java.awt.*;
 
 public class BotInfo implements MessageCreateListener
 {
@@ -28,7 +27,9 @@ public class BotInfo implements MessageCreateListener
                 .addField("Servers", "Managing " + "**"+ message.getApi().getServers().size() +"**" + " servers!", true)
                 .addField("Support", "If you want to join the support server, click [here](https://discord.gg/6g297Usrsn)")
                 .addField("Invite", "If you want to add me to your server, click [here](" + message.getApi().createBotInvite() + ")!")
-                .addField("From the creators", "I was created by DisBots Studios Inc. consisting of <@518382491338539017> and <@683879319558291539>. Incase of any problems contact them.")
+                .addField("Uptime", Uptime.formatUptime(), false)
+                .addField("The crew", "**Co-founders/Developers**\nAktindo (<@683879319558291539>)\nGame Glide (<@518382491338539017>)")
+                .addField("Additional note", "The team is very grateful to you for inviting/voting/supporting it! We would love to bring out new features everyday!")
                 .setFooter(message.getMessageAuthor().getDisplayName(), message.getMessageAuthor().getAvatar())
                 .setColor(EmbedColors.NEUTRAL.getCode());
 
