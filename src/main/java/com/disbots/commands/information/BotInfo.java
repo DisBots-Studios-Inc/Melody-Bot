@@ -1,30 +1,29 @@
 package com.disbots.commands.information;
 
 import com.disbots.commands.system.Uptime;
-import com.disbots.core.Main;
 import com.disbots.utilities.EmbedColors;
+import de.btobastian.sdcf4j.Command;
+import de.btobastian.sdcf4j.CommandExecutor;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
-import org.javacord.api.listener.message.MessageCreateListener;
 
-public class BotInfo implements MessageCreateListener
+public class BotInfo implements CommandExecutor
 {
-    @Override
-    public void onMessageCreate(MessageCreateEvent message)
+    @Command(aliases = {"botinfo", "info", "bi"}, description = "Shows information about the bot!", usage = "botinfo")
+    public void OnBotInfo(MessageCreateEvent message)
     {
-        if (message.getMessageContent().equalsIgnoreCase(Main.Prefix + "botinfo"))
-        {
-            SendEmbed(message);
-        }
+        SendEmbed(message);
     }
 
     private void SendEmbed(MessageCreateEvent message)
     {
+        /* Making the BotInfoEmbed nothing much here :) */
+
         EmbedBuilder BotInfoEmbed = new EmbedBuilder()
                 .setTitle("Bot Information")
                 .addField("Users", "Serving " + "**"+ message.getApi().getCachedUsers().size() +"**" + " users!", true)
-                .addField("Channels", "Monitoring " + "**"+ message.getApi().getChannels().size() +"**" + " channels!", true)
-                .addField("Servers", "Managing " + "**"+ message.getApi().getServers().size() +"**" + " servers!", true)
+                .addField("Channels", "Playing music in " + "**"+ message.getApi().getChannels().size() +"**" + " channels!", true)
+                .addField("Servers", "Vibing in" + "**"+ message.getApi().getServers().size() +"**" + " servers!", true)
                 .addField("Support", "If you want to join the support server, click [here](https://discord.gg/6g297Usrsn)")
                 .addField("Invite", "If you want to add me to your server, click [here](" + message.getApi().createBotInvite() + ")!")
                 .addField("Uptime", Uptime.formatUptime(), false)

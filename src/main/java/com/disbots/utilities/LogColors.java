@@ -1,6 +1,7 @@
 package com.disbots.utilities;
 
-enum LogColors {
+enum LogColors
+{
     //Color end string, color reset
     RESET("\033[0m"),
 
@@ -76,12 +77,14 @@ enum LogColors {
 
     private final String code;
 
-    LogColors(String code) {
+    LogColors(String code)
+    {
         this.code = code;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return code;
     }
 }
