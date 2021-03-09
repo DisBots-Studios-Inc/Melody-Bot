@@ -1,7 +1,7 @@
 package com.disbots.commands.information;
 
-import com.disbots.utilities.EmbedColors;
-import com.disbots.utilities.Log;
+import com.disbots.util.EmbedColors;
+import com.disbots.core.Log;
 import de.btobastian.sdcf4j.Command;
 import de.btobastian.sdcf4j.CommandExecutor;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
@@ -36,6 +36,10 @@ public class Ping implements CommandExecutor
 
     private Long GetEvalTime() throws InterruptedException
     {
+        Log logger = new Log();
+
+        logger.info("Getting evaluation time...", "commands");
+
         /*Getting evaluating Time in seconds.*/
 
         //Code being being measured starts
@@ -49,6 +53,8 @@ public class Ping implements CommandExecutor
 
         //Interval during 5 seconds of execution aka eval time
         Duration interval = Duration.between(start, end);
+
+        logger.info("Evaluation time calculation successful!", "commands");
 
         //returning eval time
         return interval.getSeconds();

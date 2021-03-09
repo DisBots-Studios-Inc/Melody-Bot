@@ -1,4 +1,4 @@
-package com.disbots.utilities;
+package com.disbots.util;
 
 import java.awt.*;
 

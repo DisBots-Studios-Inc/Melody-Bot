@@ -1,4 +1,6 @@
-package com.disbots.utilities;
+package com.disbots.core;
+
+import com.disbots.util.LogColors;
 
 public class Log
 {
