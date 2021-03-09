@@ -2,6 +2,8 @@ package com.disbots.commands.information;
 
 import com.disbots.utilities.EmbedColors;
 import com.disbots.utilities.Log;
+import de.btobastian.sdcf4j.Command;
+import de.btobastian.sdcf4j.CommandExecutor;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
@@ -13,31 +15,32 @@ import java.time.Instant;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
-public class Ping implements MessageCreateListener
+public class Ping implements CommandExecutor
 {
-    @Override
-    public void onMessageCreate(MessageCreateEvent message) 
+    @Command(aliases = {"p", "Ping"}, description = "Displays network information like Latency.", usage = "ping")
+    public void OnPingCommand(MessageCreateEvent message)
     {
-        if (message.getMessageContent().equalsIgnoreCase(Main.Prefix + "ping"))
+        /* Sending The embed and checking for errors in calculating the latency. */
+
+        try
         {
-            try
-            {
-                SendEmbed(message);
-            }
-            catch (InterruptedException e)
-            {
-                EmbedBuilder ErrorEmbed = new EmbedBuilder()
-                        .setDescription("There was an error evaluating the latency! Please contact DisBots Inc.")
-                        .setFooter("", message.getMessageAuthor().getAvatar())
-                        .setColor(EmbedColors.ERROR.getCode());
-                message.getChannel().sendMessage(ErrorEmbed);
-                new Log().error("Error while evaluating latency in a guild\n>" + e, "");
-            }
+            SendEmbed(message);
+        }
+        catch (InterruptedException e)
+        {
+            EmbedBuilder ErrorEmbed = new EmbedBuilder()
+                    .setDescription("There was an error evaluating the latency! Please contact DisBots Inc.")
+                    .setFooter("", message.getMessageAuthor().getAvatar())
+                    .setColor(EmbedColors.ERROR.getCode());
+            message.getChannel().sendMessage(ErrorEmbed);
+            new Log().error("Error while evaluating latency in a guild\n>" + e, "");
         }
     }
 
     private Long GetEvalTime() throws InterruptedException
     {
+        /*Getting evaluating Time in seconds.*/
+
         //Code being being measured starts
         Instant start = Instant.now();
 
@@ -56,6 +59,8 @@ public class Ping implements MessageCreateListener
 
     private void SendEmbed(MessageCreateEvent message) throws InterruptedException
     {
+        /* Sending and editing the embed. */
+
         Long EvalTime = GetEvalTime();
 
         long GatewayLatency = message.getApi().getLatestGatewayLatency().toMillis();

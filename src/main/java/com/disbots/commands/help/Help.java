@@ -12,7 +12,8 @@ public class Help implements MessageCreateListener
     @Override
     public void onMessageCreate(MessageCreateEvent message)
     {
-        if (message.getMessageContent().equalsIgnoreCase(Main.Prefix + "help")) {
+        if (message.getMessageContent().equalsIgnoreCase(Main.Prefix + "help"))
+        {
             EmbedBuilder HelpEmbed = new EmbedBuilder()
                     .setTitle("Help Menu")
                     .addField("Here are the commands!", "", false)
