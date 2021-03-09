@@ -1,5 +1,6 @@
 package com.disbots.core;
 
+import com.disbots.commands.help.Help;
 import com.disbots.commands.information.BotInfo;
 import com.disbots.commands.information.Ping;
 import com.disbots.commands.system.Github;
@@ -37,6 +38,7 @@ public class Main
         logger.info("Loading resources...", "client");
 
         /* Registering All commands and Logging them. */
+        handler.registerCommand(new Help(handler));
         handler.registerCommand(new Github());
         handler.registerCommand(new Ping());
         handler.registerCommand(new Uptime());
