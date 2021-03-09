@@ -1,17 +1,15 @@
 package com.disbots.commands.information;
 
 import com.disbots.commands.system.Uptime;
-import com.disbots.core.Main;
 import com.disbots.utilities.EmbedColors;
 import de.btobastian.sdcf4j.Command;
 import de.btobastian.sdcf4j.CommandExecutor;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
-import org.javacord.api.listener.message.MessageCreateListener;
 
 public class BotInfo implements CommandExecutor
 {
-    @Command(aliases = {"info", "BotInfo"}, description = "Shows Information about the bot!", usage = "info")
+    @Command(aliases = {"botinfo", "info", "bi"}, description = "Shows information about the bot!", usage = "botinfo")
     public void OnBotInfo(MessageCreateEvent message)
     {
         SendEmbed(message);

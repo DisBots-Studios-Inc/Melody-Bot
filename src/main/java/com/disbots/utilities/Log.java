@@ -33,10 +33,8 @@ public class Log
         System.out.println(LogColors.YELLOW + "WARNING " + LogColors.RESET + "[" + this.getSrc(src) + "] " + message);
     }
 
-    public void error(String message, String src)
+    public void error(String message, String src, Exception error)
     {
-        /* Logs errors */
-
-        System.out.println(LogColors.RED + "ERROR " + LogColors.RESET + "[" + this.getSrc(src) + "] " + message);
+        System.out.println(LogColors.RED + "ERROR " + LogColors.RESET + "[" + this.getSrc(src) + "] " + message + "\n" + "> " + error);
     }
 }

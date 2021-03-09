@@ -1,25 +1,17 @@
 package com.disbots.commands.system;
 
-import com.disbots.core.Main;
 import com.disbots.utilities.EmbedColors;
 import de.btobastian.sdcf4j.Command;
 import de.btobastian.sdcf4j.CommandExecutor;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
-import org.javacord.api.listener.message.MessageCreateListener;
 
-import java.awt.*;
 import java.lang.management.ManagementFactory;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 public class Uptime implements CommandExecutor
 {
 
-    @Command(aliases = {"up", "UpTime"}, description = "Shows how long the bot has been up for.", usage = "uptime")
+    @Command(aliases = {"uptime", "up"}, description = "Shows how long the bot has been up for.", usage = "uptime")
     public void OnUptime(MessageCreateEvent message)
     {
         EmbedBuilder UptimeEmbed = new EmbedBuilder()
@@ -46,8 +38,8 @@ public class Uptime implements CommandExecutor
         final long seconds = duration / 1000L % 60;
         // final long milliseconds = duration % 1000;
 
-        String uptime = (years == 0 ? "" : "**" + years + "** Years, ") + (months == 0 ? "" : "**" + months + "** Months, ") + (days == 0 ? "" : "**" + days + "** Days, ") + (hours == 0 ? "" : "**" + hours + "** Hours, ")
-                + (minutes == 0 ? "" : "**" + minutes + "** Minutes, ") + (seconds == 0 ? "" : "**" + seconds + "** Seconds, ") /* + (milliseconds == 0 ? "" : milliseconds + " Milliseconds, ") */;
+        String uptime = (years == 0 ? "" : "**" + years + "** year(s), ") + (months == 0 ? "" : "**" + months + "** month(s), ") + (days == 0 ? "" : "**" + days + "** day(s), ") + (hours == 0 ? "" : "**" + hours + "** Hours, ")
+                + (minutes == 0 ? "" : "**" + minutes + "** minute(s), ") + (seconds == 0 ? "" : "**" + seconds + "** second(s), ") /* + (milliseconds == 0 ? "" : milliseconds + " Milliseconds, ") */;
 
         uptime = replaceLast(uptime, ", ", "");
         uptime = replaceLast(uptime, ",", " and");

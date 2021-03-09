@@ -6,10 +6,7 @@ import de.btobastian.sdcf4j.Command;
 import de.btobastian.sdcf4j.CommandExecutor;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
-import org.javacord.api.listener.message.MessageCreateListener;
-import com.disbots.core.Main;
 
-import java.awt.*;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.concurrent.CompletableFuture;
@@ -17,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Ping implements CommandExecutor
 {
-    @Command(aliases = {"p", "Ping"}, description = "Displays network information like Latency.", usage = "ping")
+    @Command(aliases = {"ping", "p"}, description = "Displays network information like Latency.", usage = "ping", showInHelpPage = false)
     public void OnPingCommand(MessageCreateEvent message)
     {
         /* Sending The embed and checking for errors in calculating the latency. */
@@ -33,7 +30,7 @@ public class Ping implements CommandExecutor
                     .setFooter("", message.getMessageAuthor().getAvatar())
                     .setColor(EmbedColors.ERROR.getCode());
             message.getChannel().sendMessage(ErrorEmbed);
-            new Log().error("Error while evaluating latency in a guild\n>" + e, "");
+            new Log().error("Error while evaluating latency in a guild", "commands", e);
         }
     }
 

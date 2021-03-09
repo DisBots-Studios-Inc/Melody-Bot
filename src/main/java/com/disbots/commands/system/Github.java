@@ -8,7 +8,7 @@ import org.javacord.api.event.message.MessageCreateEvent;
 
 public class Github implements CommandExecutor
 {
-    @Command(aliases = {"git", "Github"}, description = "Shows the github Link of the bot", usage = "github")
+    @Command(aliases = {"github", "git"}, description = "Shows the github Link of the bot", usage = "github")
     public void GithubEmbed(MessageCreateEvent message)
     {
         /* Github Embed, Noting much here :) */
