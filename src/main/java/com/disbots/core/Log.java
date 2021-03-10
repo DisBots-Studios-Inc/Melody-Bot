@@ -1,42 +1,53 @@
 package com.disbots.core;
 
 import com.disbots.util.LogColors;
+import com.disbots.util.LogTypes;
 
 public class Log
 {
     /* Logging Class, where we store all our logger stuff. */
 
-    public String getSrc(String src)
+    public void log(LogTypes logTypes, String message, String LogSrc)
     {
-        /* Get's the type of message. eg:- HANDLERS, CLIENT etc. */
-        String srcType;
-        if (src.isEmpty())
+        if (logTypes.equals(LogTypes.INFO))
         {
-            srcType = "OTHER";
+            System.out.println(LogColors.GREEN + "INFO " + LogColors.RESET + "[" + LogSrc + "] " + message);
         }
-        else
+        else if (logTypes.equals(LogTypes.WARNING))
         {
-            srcType = src.toUpperCase();
+            System.out.println(LogColors.YELLOW + "WARNING " + LogColors.RESET + "[" + LogSrc + "] " + message);
         }
-        return srcType;
+        else if (logTypes.equals(LogTypes.COMMANDS))
+        {
+            System.out.println(LogColors.CYAN + "COMMANDS" + LogColors.RESET + "[" + LogSrc + "] " + message);
+        }
+        else if (logTypes.equals(LogTypes.THREAD))
+        {
+            System.out.println(LogColors.BLUE + "THREAD" + LogColors.RESET + "[" + LogSrc + "] " + message);
+        }
     }
 
-    public void info(String message, String src)
+    public void log(String message, LogTypes logTypes, String LogSrc, Exception error)
     {
-        /* Logs info */
-
-        System.out.println(LogColors.GREEN + "INFO " + LogColors.RESET + "[" + this.getSrc(src) + "] " + message);
-    }
-
-    public void warning(String message, String src)
-    {
-        /* Logs warnings */
-
-        System.out.println(LogColors.YELLOW + "WARNING " + LogColors.RESET + "[" + this.getSrc(src) + "] " + message);
-    }
-
-    public void error(String message, String src, Exception error)
-    {
-        System.out.println(LogColors.RED + "ERROR " + LogColors.RESET + "[" + this.getSrc(src) + "] " + message + "\n" + "> " + error);
+        if (logTypes.equals(LogTypes.INFO))
+        {
+            System.out.println(LogColors.GREEN + "INFO " + LogColors.RESET + "[" + LogSrc + "] " + message);
+        }
+        else if (logTypes.equals(LogTypes.WARNING))
+        {
+            System.out.println(LogColors.YELLOW + "WARNING " + LogColors.RESET + "[" + LogSrc + "] " + message);
+        }
+        else if (logTypes.equals(LogTypes.ERROR))
+        {
+            System.out.println(LogColors.RED + "ERROR " + LogColors.RESET + "[" + LogSrc + "] " + message + "\n" + "> " + error);
+        }
+        else if (logTypes.equals(LogTypes.COMMANDS))
+        {
+            System.out.println(LogColors.CYAN + "COMMANDS" + LogColors.RESET + "[" + LogSrc + "] " + message);
+        }
+        else if (logTypes.equals(LogTypes.THREAD))
+        {
+            System.out.println(LogColors.BLUE + "THREAD" + LogColors.RESET + "[" + LogSrc + "] " + message);
+        }
     }
 }

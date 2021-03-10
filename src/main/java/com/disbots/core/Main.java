@@ -5,6 +5,7 @@ import com.disbots.commands.information.BotInfo;
 import com.disbots.commands.information.Ping;
 import com.disbots.commands.system.Github;
 import com.disbots.commands.system.Uptime;
+import com.disbots.util.LogTypes;
 import de.btobastian.sdcf4j.CommandHandler;
 import de.btobastian.sdcf4j.handler.JavacordHandler;
 import org.javacord.api.DiscordApi;
@@ -28,7 +29,7 @@ public class Main extends Thread
             public void run()
             {
                 /* Logging stuff */
-                logger.info("Starting bot...", "client");
+                logger.log(LogTypes.INFO, "Starting bot...", "Main_Bot");
 
                 /* Making out Client and Updating it's status and Activity. */
 
@@ -39,7 +40,7 @@ public class Main extends Thread
 
             public void start()
             {
-                logger.info("Starting bot creation Thread", "cpuThreads");
+                logger.log(LogTypes.THREAD, "Starting bot creation Thread", "Main_Bot");
                 super.start();
             }
         };
@@ -53,7 +54,7 @@ public class Main extends Thread
                 CommandHandler handler = new JavacordHandler(Bot);
                 handler.setDefaultPrefix(Prefix);
 
-                logger.info("Loading resources...", "client");
+                logger.log(LogTypes.INFO, "Loading resources...", "Main_Bot");
 
                 /* Registering All commands and Logging them. */
                 handler.registerCommand(new Help(handler));
@@ -62,13 +63,13 @@ public class Main extends Thread
                 handler.registerCommand(new Uptime());
                 handler.registerCommand(new BotInfo());
 
-                logger.info("Loaded " + Arrays.stream(handler.getCommands().toArray()).count() + " commands!", "commands");
-                logger.info("Loaded resources! Ready for operation!", "client");
+                logger.log(LogTypes.INFO, "Loaded " + Arrays.stream(handler.getCommands().toArray()).count() + " commands!", "Main_Bot");
+                logger.log(LogTypes.INFO, "Loaded resources! Ready for operation!", "Main_Bot");
             }
 
             public void start()
             {
-                logger.info("Starting Loading Listeners Thread", "cpuThreads");
+                logger.log(LogTypes.THREAD, "Starting LoadingCommandsThread", "Main_Bot");
                 super.start();
             }
         };
@@ -79,5 +80,18 @@ public class Main extends Thread
 
         LoadCommandsThread.setName("Melody - LoadCommands");
         LoadCommandsThread.start();
+
+        if (!BotCreateThread.isAlive())
+        {
+            Log logger = new Log();
+            logger.log(LogTypes.THREAD, "BotCreateThread is finished!", "Main_Bot");
+        }
+
+        if (!LoadCommandsThread.isAlive())
+        {
+            Log logger = new Log();
+            logger.log(LogTypes.THREAD, "LoadCommandsThread is finished!", "Main_Bot");
+        }
+
     }
 }
