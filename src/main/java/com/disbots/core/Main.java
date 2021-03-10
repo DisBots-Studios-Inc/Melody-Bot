@@ -3,6 +3,8 @@ package com.disbots.core;
 import com.disbots.commands.help.Help;
 import com.disbots.commands.information.BotInfo;
 import com.disbots.commands.information.Ping;
+import com.disbots.commands.music.Play;
+import com.disbots.commands.music.Stop;
 import com.disbots.commands.system.Github;
 import com.disbots.commands.system.Uptime;
 import com.disbots.util.LogTypes;
@@ -62,6 +64,8 @@ public class Main extends Thread
                 handler.registerCommand(new Ping());
                 handler.registerCommand(new Uptime());
                 handler.registerCommand(new BotInfo());
+                handler.registerCommand(new Play());
+                handler.registerCommand(new Stop());
 
                 logger.log(LogTypes.INFO, "Loaded " + Arrays.stream(handler.getCommands().toArray()).count() + " commands!", "Main_Bot");
                 logger.log(LogTypes.INFO, "Loaded resources! Ready for operation!", "Main_Bot");
@@ -93,5 +97,6 @@ public class Main extends Thread
             logger.log(LogTypes.THREAD, "LoadCommandsThread is finished!", "Main_Bot");
         }
 
+        //TODO: Remove multi-threading.
     }
 }

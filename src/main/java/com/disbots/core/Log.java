@@ -9,6 +9,8 @@ public class Log
 
     public void log(LogTypes logTypes, String message, String LogSrc)
     {
+        //TODO Change the order of the parameters so that the message is first.
+
         if (logTypes.equals(LogTypes.INFO))
         {
             System.out.println(LogColors.GREEN + "INFO " + LogColors.RESET + "[" + LogSrc + "] " + message);
