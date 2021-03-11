@@ -19,84 +19,38 @@ import java.util.Arrays;
 
 public class Main extends Thread
 {
+    public static final String Prefix = ";";
+    public static Log logger = new Log();
+
     public static void main(String[] args) throws InterruptedException
     {
+        /* Logging stuff */
+        logger.log(LogTypes.INFO, "Starting bot...", "Main_Bot");
+
+        /* Making out Client and Updating it's status and Activity. */
+
         DiscordApi Bot = new DiscordApiBuilder().setToken(System.getenv().get("TOKEN")).setAllIntents().login().join();
-        final String Prefix = ";";
 
-        Thread BotCreateThread = new Thread(){
-            /* Getting the variables we need */
-            private final Log logger = new Log();
+        Bot.updateStatus(UserStatus.IDLE);
+        Bot.updateActivity(ActivityType.LISTENING, "Melodies!");
 
-            public void run()
-            {
-                /* Logging stuff */
-                logger.log(LogTypes.INFO, "Starting bot...", "Main_Bot");
+        /* Forgoing Normal JavaCord commands for sdcf4j command handler and setting default prefix */
+        CommandHandler handler = new JavacordHandler(Bot);
+        handler.setDefaultPrefix(Prefix);
 
-                /* Making out Client and Updating it's status and Activity. */
+        logger.log(LogTypes.INFO, "Loading resources...", "Main_Bot");
 
-                Bot.updateStatus(UserStatus.IDLE);
-                Bot.updateActivity(ActivityType.LISTENING, "Melodies!");
+        /* Registering All commands and Logging them. */
+        handler.registerCommand(new Help(handler));
+        handler.registerCommand(new Github());
+        handler.registerCommand(new Ping());
+        handler.registerCommand(new Uptime());
+        handler.registerCommand(new BotInfo());
+        handler.registerCommand(new Play());
+        handler.registerCommand(new Stop());
 
-            }
+        logger.log(LogTypes.INFO, "Loaded " + Arrays.stream(handler.getCommands().toArray()).count() + " commands!", "Main_Bot");
+        logger.log(LogTypes.INFO, "Loaded resources! Ready for operation!", "Main_Bot");
 
-            public void start()
-            {
-                logger.log(LogTypes.THREAD, "Starting bot creation Thread", "Main_Bot");
-                super.start();
-            }
-        };
-
-        Thread LoadCommandsThread = new Thread(){
-            final Log logger = new Log();
-
-            public void run()
-            {
-                /* Forgoing Normal JavaCord commands for sdcf4j command handler and setting default prefix */
-                CommandHandler handler = new JavacordHandler(Bot);
-                handler.setDefaultPrefix(Prefix);
-
-                logger.log(LogTypes.INFO, "Loading resources...", "Main_Bot");
-
-                /* Registering All commands and Logging them. */
-                handler.registerCommand(new Help(handler));
-                handler.registerCommand(new Github());
-                handler.registerCommand(new Ping());
-                handler.registerCommand(new Uptime());
-                handler.registerCommand(new BotInfo());
-                handler.registerCommand(new Play());
-                handler.registerCommand(new Stop());
-
-                logger.log(LogTypes.INFO, "Loaded " + Arrays.stream(handler.getCommands().toArray()).count() + " commands!", "Main_Bot");
-                logger.log(LogTypes.INFO, "Loaded resources! Ready for operation!", "Main_Bot");
-            }
-
-            public void start()
-            {
-                logger.log(LogTypes.THREAD, "Starting LoadingCommandsThread", "Main_Bot");
-                super.start();
-            }
-        };
-
-        BotCreateThread.setName("Melody - BotConnection");
-        BotCreateThread.start();
-        BotCreateThread.join();
-
-        LoadCommandsThread.setName("Melody - LoadCommands");
-        LoadCommandsThread.start();
-
-        if (!BotCreateThread.isAlive())
-        {
-            Log logger = new Log();
-            logger.log(LogTypes.THREAD, "BotCreateThread is finished!", "Main_Bot");
-        }
-
-        if (!LoadCommandsThread.isAlive())
-        {
-            Log logger = new Log();
-            logger.log(LogTypes.THREAD, "LoadCommandsThread is finished!", "Main_Bot");
-        }
-
-        //TODO: Remove multi-threading.
     }
 }
