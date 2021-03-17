@@ -1,6 +1,5 @@
 package com.disbots.util.logging;
 
-import java.util.Calendar;
 import java.util.Date;
 
 public class Log
@@ -46,9 +45,10 @@ public class Log
 
     public String getTime()
     {
-        int hours = Calendar.HOUR_OF_DAY;
-        int minutes = Calendar.MINUTE;
-        int seconds = Calendar.SECOND;
+        Date dateNow = new Date();
+        int hours = dateNow.getHours();
+        int minutes = dateNow.getMinutes();
+        int seconds = dateNow.getSeconds();
 
         return "[" + hours + ":" + minutes + ":" + seconds + "]";
     }

@@ -16,7 +16,7 @@ repositories {
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.1'
     implementation 'org.javacord:javacord:3.1.2'
     runtimeOnly 'org.apache.logging.log4j:log4j-core:2.14.0'
     implementation 'de.btobastian.sdcf4j:sdcf4j-core:1.0.10'
