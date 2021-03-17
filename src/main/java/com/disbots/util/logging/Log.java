@@ -1,5 +1,6 @@
 package com.disbots.util.logging;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class Log
@@ -34,7 +35,8 @@ public class Log
         }
     }
 
-    public String getSrc(String src) {
+    public String getSrc(String src)
+    {
         if (src.isEmpty()) {
             return "OTHER";
         }
@@ -42,11 +44,11 @@ public class Log
         return src.toUpperCase();
     }
 
-    public String getTime() {
-        Date dateNow = new Date();
-        int hours = dateNow.getHours();
-        int minutes = dateNow.getMinutes();
-        int seconds = dateNow.getSeconds();
+    public String getTime()
+    {
+        int hours = Calendar.HOUR_OF_DAY;
+        int minutes = Calendar.MINUTE;
+        int seconds = Calendar.SECOND;
 
         return "[" + hours + ":" + minutes + ":" + seconds + "]";
     }

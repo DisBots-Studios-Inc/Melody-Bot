@@ -1,5 +1,8 @@
 package com.disbots.commands.music;
 
+import com.disbots.util.EmbedColors;
+import com.disbots.util.logging.Log;
+import com.disbots.util.logging.LogTypes;
 import com.disbots.util.music.LavaPlayerAudioSource;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
@@ -13,13 +16,25 @@ import de.btobastian.sdcf4j.Command;
 import de.btobastian.sdcf4j.CommandExecutor;
 import org.javacord.api.audio.AudioSource;
 import org.javacord.api.entity.channel.ServerVoiceChannel;
+import org.javacord.api.entity.message.Message;
+import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class Play implements CommandExecutor
 {
     @Command(aliases = {"play", "pl"}, description = "Plays specified music track", usage = "play <music name>")
     public void OnPlayCommand(MessageCreateEvent message, String[] args)
     {
+        EmbedBuilder LoadingEmbed = new EmbedBuilder()
+                .setTitle("Loading selected track! <a:loading:781376656937713676>")
+                .setColor(EmbedColors.NEUTRAL.getCode())
+                .setFooter("", message.getMessageAuthor().getAvatar());
+
+        CompletableFuture<Message> LoadingMessage = message.getChannel().sendMessage(LoadingEmbed);
+
         ServerVoiceChannel voiceChannel;
         voiceChannel = message.getMessageAuthor().getConnectedVoiceChannel().get();
         voiceChannel.connect().thenAccept(audioConnection -> {
@@ -37,7 +52,26 @@ public class Play implements CommandExecutor
                 @Override
                 public void trackLoaded(AudioTrack track)
                 {
+                    try
+                    {
+                        LoadingMessage.get().delete();
+
+                        EmbedBuilder TrackPlayingEmbed = new EmbedBuilder()
+                                .setTitle("`SongName` is now playing! <a:green_tick:781083389280911370>")
+                                .setDescription("`Duration`: **TODO**")
+                                .setColor(EmbedColors.SUCCESS.getCode())
+                                .setFooter("", message.getMessageAuthor().getAvatar());
+
+                        message.getChannel().sendMessage(TrackPlayingEmbed);
+                    }
+                    catch (InterruptedException | ExecutionException e)
+                    {
+                        new Log().log(LogTypes.WARNING, "problem deleting loading embed", "Play_Command");
+                    }
+
                     player.playTrack(track);
+
+                    new Log().log(LogTypes.INFO, "Playing music...", "Play_Command");
                 }
 
                 @Override
