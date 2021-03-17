@@ -1,5 +1,6 @@
 package com.disbots.commands.music;
 
+import com.disbots.util.music.LavaPlayerAudioSource;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
@@ -10,18 +11,17 @@ import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import de.btobastian.sdcf4j.Command;
 import de.btobastian.sdcf4j.CommandExecutor;
-import org.javacord.api.audio.AudioConnection;
 import org.javacord.api.audio.AudioSource;
 import org.javacord.api.entity.channel.ServerVoiceChannel;
-import org.javacord.api.entity.server.Server;
 import org.javacord.api.event.message.MessageCreateEvent;
 
 public class Play implements CommandExecutor
 {
-    @Command(aliases = {"play", "pl"}, description = "Plays specified music track", usage = "music [music name]", showInHelpPage = false)
+    @Command(aliases = {"play", "pl"}, description = "Plays specified music track", usage = "play <music name>")
     public void OnPlayCommand(MessageCreateEvent message, String[] args)
     {
-        ServerVoiceChannel voiceChannel = message.getMessageAuthor().getConnectedVoiceChannel().get();
+        ServerVoiceChannel voiceChannel;
+        voiceChannel = message.getMessageAuthor().getConnectedVoiceChannel().get();
         voiceChannel.connect().thenAccept(audioConnection -> {
             // Create a player manager
             AudioPlayerManager playerManager = new DefaultAudioPlayerManager();

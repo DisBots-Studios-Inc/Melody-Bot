@@ -7,7 +7,7 @@ import org.javacord.api.event.message.MessageCreateEvent;
 
 public class Stop implements CommandExecutor
 {
-    @Command(aliases = {"stop", "s"}, description = "Stops playing music.", usage = "stop", showInHelpPage = false)
+    @Command(aliases = {"stop", "s"}, description = "Stops playing music.", usage = "stop")
     public void OnStop(MessageCreateEvent message)
     {
         ServerVoiceChannel voiceChannel = message.getMessageAuthor().getConnectedVoiceChannel().get();

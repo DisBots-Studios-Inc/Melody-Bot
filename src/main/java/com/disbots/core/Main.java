@@ -7,7 +7,8 @@ import com.disbots.commands.music.Play;
 import com.disbots.commands.music.Stop;
 import com.disbots.commands.system.Github;
 import com.disbots.commands.system.Uptime;
-import com.disbots.util.LogTypes;
+import com.disbots.util.logging.Log;
+import com.disbots.util.logging.LogTypes;
 import de.btobastian.sdcf4j.CommandHandler;
 import de.btobastian.sdcf4j.handler.JavacordHandler;
 import org.javacord.api.DiscordApi;
@@ -25,7 +26,7 @@ public class Main extends Thread
     public static void main(String[] args) throws InterruptedException
     {
         /* Logging stuff */
-        logger.log(LogTypes.INFO, "Starting bot...", "Main_Bot");
+        logger.log(LogTypes.INFO, "Starting bot...", "client");
 
         /* Making out Client and Updating it's status and Activity. */
 
@@ -34,11 +35,12 @@ public class Main extends Thread
         Bot.updateStatus(UserStatus.IDLE);
         Bot.updateActivity(ActivityType.LISTENING, "Melodies!");
 
-        /* Forgoing Normal JavaCord commands for sdcf4j command handler and setting default prefix */
+        /* Forgoing Normal JavaCord commands for SDCF4J command handler and setting default prefix */
         CommandHandler handler = new JavacordHandler(Bot);
         handler.setDefaultPrefix(Prefix);
 
-        logger.log(LogTypes.INFO, "Loading resources...", "Main_Bot");
+        logger.log(LogTypes.INFO, "Loading resources...", "client");
+        logger.log(LogTypes.INFO, "Loading commands...", "client");
 
         /* Registering All commands and Logging them. */
         handler.registerCommand(new Help(handler));
@@ -49,8 +51,8 @@ public class Main extends Thread
         handler.registerCommand(new Play());
         handler.registerCommand(new Stop());
 
-        logger.log(LogTypes.INFO, "Loaded " + Arrays.stream(handler.getCommands().toArray()).count() + " commands!", "Main_Bot");
-        logger.log(LogTypes.INFO, "Loaded resources! Ready for operation!", "Main_Bot");
+        logger.log(LogTypes.INFO, "Loaded " + Arrays.stream(handler.getCommands().toArray()).count() + " commands!", "client");
+        logger.log(LogTypes.INFO, "Loaded resources! Ready for operation!", "client");
 
     }
 }

@@ -1,4 +1,4 @@
-package com.disbots.util;
+package com.disbots.util.logging;
 
 public enum LogColors
 {
