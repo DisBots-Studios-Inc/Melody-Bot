@@ -23,7 +23,7 @@ public class BotInfo implements CommandExecutor
                 .setTitle("Bot Information")
                 .addField("Users", "Serving " + "**"+ message.getApi().getCachedUsers().size() +"**" + " users!", true)
                 .addField("Channels", "Playing music in " + "**"+ message.getApi().getChannels().size() +"**" + " channels!", true)
-                .addField("Servers", "Vibing in" + "**"+ message.getApi().getServers().size() +"**" + " servers!", true)
+                .addField("Servers", "Vibing in " + "**"+ message.getApi().getServers().size() +"**" + " servers!", true)
                 .addField("Support", "If you want to join the support server, click [here](https://discord.gg/6g297Usrsn)")
                 .addField("Invite", "If you want to add me to your server, click [here](" + message.getApi().createBotInvite() + ")!")
                 .addField("Uptime", Uptime.formatUptime(), false)

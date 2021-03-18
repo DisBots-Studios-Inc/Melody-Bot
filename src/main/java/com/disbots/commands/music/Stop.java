@@ -1,6 +1,7 @@
 package com.disbots.commands.music;
 
 import com.disbots.util.EmbedColors;
+import com.disbots.util.emojis.IEmojis;
 import com.disbots.util.logging.Log;
 import com.disbots.util.logging.LogTypes;
 import de.btobastian.sdcf4j.Command;
@@ -16,9 +17,10 @@ public class Stop implements CommandExecutor
     public void OnStop(MessageCreateEvent message)
     {
         EmbedBuilder StopEmbed = new EmbedBuilder()
-                .setTitle("Stopped playing! <a:green_tick:781083389280911370>")
+                .setTitle("Stopped playing! " + IEmojis.GreenTick)
                 .setColor(EmbedColors.SUCCESS.getCode())
-                .setFooter("**:warning: WARNING:** using this multiple times while it is stopping can break the bot!", message.getMessageAuthor().getAvatar());
+                .setDescription(" :warning: **WARNING:** using this multiple times while it is stopping can break the bot!")
+                .setFooter("", message.getMessageAuthor().getAvatar());
 
         message.getChannel().sendMessage(StopEmbed);
 

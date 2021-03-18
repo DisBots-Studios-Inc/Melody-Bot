@@ -1,12 +1,13 @@
 package com.disbots.util.logging;
 
+import javax.annotation.Nonnull;
 import java.util.Date;
 
 public class Log
 {
     /* Logging Class, where we store all our logger stuff. */
 
-    public void log(LogTypes logTypes, String message, String LogSrc)
+    public void log(@Nonnull LogTypes logTypes, @Nonnull String message, String LogSrc)
     {
         if (logTypes.equals(LogTypes.INFO))
         {
@@ -18,7 +19,7 @@ public class Log
         }
     }
 
-    public void log(LogTypes logTypes, String message, String LogSrc, Exception error)
+    public void log(@Nonnull LogTypes logTypes, @Nonnull String message, String LogSrc, @Nonnull Exception error)
     {
         if (logTypes.equals(LogTypes.INFO))
         {
@@ -30,7 +31,23 @@ public class Log
         }
         else if (logTypes.equals(LogTypes.ERROR))
         {
-            System.out.println(this.getTime() + LogColors.RED + " ERROR " + LogColors.RESET + "[" + this.getSrc(LogSrc) + "] " + message + "\n" + "> " + error);
+            System.out.println(this.getTime() + LogColors.RED + " ERROR " + LogColors.RESET + "[" + this.getSrc(LogSrc) + "] " + message + "\n" + "> " + error.toString());
+        }
+    }
+
+    public void log(@Nonnull LogTypes logTypes, @Nonnull String message, String LogSrc, @Nonnull Throwable error)
+    {
+        if (logTypes.equals(LogTypes.INFO))
+        {
+            System.out.println(this.getTime() + LogColors.GREEN + " INFO " + LogColors.RESET + "[" + this.getSrc(LogSrc) + "] " + message);
+        }
+        else if (logTypes.equals(LogTypes.WARNING))
+        {
+            System.out.println(this.getTime() + LogColors.YELLOW + " WARNING " + LogColors.RESET + "[" + this.getSrc(LogSrc) + "] " + message);
+        }
+        else if (logTypes.equals(LogTypes.ERROR))
+        {
+            System.out.println(this.getTime() + LogColors.RED + " ERROR " + LogColors.RESET + "[" + this.getSrc(LogSrc) + "] " + message + "\n" + "> " + error.toString());
         }
     }
 

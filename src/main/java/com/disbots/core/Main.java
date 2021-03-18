@@ -9,6 +9,9 @@ import com.disbots.commands.system.Github;
 import com.disbots.commands.system.Uptime;
 import com.disbots.util.logging.Log;
 import com.disbots.util.logging.LogTypes;
+import com.google.api.client.googleapis.json.GoogleJsonResponseException;
+import com.google.api.services.youtube.YouTube;
+import com.google.api.services.youtube.model.SearchListResponse;
 import de.btobastian.sdcf4j.CommandHandler;
 import de.btobastian.sdcf4j.handler.JavacordHandler;
 import org.javacord.api.DiscordApi;
@@ -16,14 +19,19 @@ import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.activity.ActivityType;
 import org.javacord.api.entity.user.UserStatus;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.Arrays;
+
+import static com.disbots.core.YoutubeApiService.getService;
 
 public class Main extends Thread
 {
     public static final String Prefix = ";";
     public static Log logger = new Log();
+    public static final String DEVELOPER_KEY = System.getenv().get("DEVELOPER_KEY");
 
-    public static void main(String[] args) throws InterruptedException
+    public static void main(String[] args) throws GeneralSecurityException, IOException
     {
         /* Logging stuff */
         logger.log(LogTypes.INFO, "Starting bot...", "client");
