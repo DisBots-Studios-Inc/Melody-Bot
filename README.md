@@ -21,11 +21,12 @@ Run these commands in your terminal.
 ```shell
 git clone https://github.com/DisBots-Studios-Inc/Melody-Bot.git
 cd Melody-Bot
-npm install
+chmod +x gradlew
+./gradlew build
 ```
 
 ### 👩‍💻 Adding configuration variables
-Make a new environmental variable called `TOKEN` and give it the value of your bots token.
+Make a new environmental variable called `TOKEN` and give it the value of your bots token. (music config part to be updated on wiki)
 
 ### Running it
 Just run it using the arrow button on IntelliJ or any other IDE.
