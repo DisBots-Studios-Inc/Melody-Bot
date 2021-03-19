@@ -1,2 +1,0 @@
-- [Markdown Sample](markdown.md)
-

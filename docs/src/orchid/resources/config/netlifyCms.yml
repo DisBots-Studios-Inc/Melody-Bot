@@ -1,5 +1,0 @@
-config:
-  backend:
-    name: github
-    repo: 'DisBots-Studios-Inc/Melody-Bot'
-    branch: master
