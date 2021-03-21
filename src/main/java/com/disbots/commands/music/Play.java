@@ -45,6 +45,9 @@ public class Play implements CommandExecutor
 
        try
         {
+            /*
+            TODO: Enable youtube api.
+
             YouTube youtubeService = getService();
             // Define and execute the API request
             YouTube.Search.List request = youtubeService.search()
@@ -57,6 +60,7 @@ public class Play implements CommandExecutor
             JSONObject httpResponse = new JSONObject(response);
 
             System.out.println(httpResponse.get("videoId"));
+            */
 
             voiceChannel = message.getMessageAuthor().getConnectedVoiceChannel().get();
 
@@ -67,7 +71,7 @@ public class Play implements CommandExecutor
 
             LoadingMessage = message.getChannel().sendMessage(LoadingEmbed);
         }
-        catch (NoSuchElementException | NullPointerException | IOException | GeneralSecurityException exception)
+        catch (NoSuchElementException | NullPointerException exception)
         {
             EmbedBuilder NotConnectedEmbed = new EmbedBuilder()
                     .setTitle("You are not currently in a voice channel! " + IEmojis.RedTick)
@@ -93,7 +97,7 @@ public class Play implements CommandExecutor
             audioConnection.setAudioSource(source);
 
             // You can now use the AudioPlayer like you would normally do with Lavaplayer, e.g.,
-            playerManager.loadItem("https://www.youtube.com/watch?v=", new AudioLoadResultHandler() {
+            playerManager.loadItem("https://www.youtube.com/watch?v=NvS351QKFV4", new AudioLoadResultHandler() {
                 private Long trackTime;
 
                 @Override
@@ -176,6 +180,5 @@ public class Play implements CommandExecutor
             new Log().log(LogTypes.ERROR, "Failed to join voice channel on " + message.getServer().toString(), "Play_Command", e);
             return null;
         });
-        //TODO: Implement youtube search api
     }
 }

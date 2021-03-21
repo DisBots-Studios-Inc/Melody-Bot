@@ -5,8 +5,14 @@ import java.util.Date;
 
 public class Log
 {
-    /* Logging Class, where we store all our logger stuff. */
-
+    /**
+     * Logs general warnings and info.
+     *
+     * @param logTypes The enum which contains the log types, used to identify the type
+     * of log. It cannot be null
+     * @param message the message to be displayed in the info or warning. It cannot be null.
+     * @param LogSrc tells, where the log message is coming from.
+     */
     public void log(@Nonnull LogTypes logTypes, @Nonnull String message, String LogSrc)
     {
         if (logTypes.equals(LogTypes.INFO))
@@ -19,6 +25,15 @@ public class Log
         }
     }
 
+    /**
+     * Logs errors and exceptions.
+     *
+     * @param logTypes The enum which contains the log types, used to identify the type
+     * of log. It cannot be null
+     * @param message The message to be displayed in the info or warning. It cannot be null.
+     * @param LogSrc Tells, where the log message is coming from.
+     * @param error The error which it should display on the console
+     */
     public void log(@Nonnull LogTypes logTypes, @Nonnull String message, String LogSrc, @Nonnull Exception error)
     {
         if (logTypes.equals(LogTypes.INFO))
@@ -35,6 +50,15 @@ public class Log
         }
     }
 
+    /**
+     * Logs errors and throwable.
+     *
+     * @param logTypes The enum which contains the log types, used to identify the type
+     * of log. It cannot be null
+     * @param message The message to be displayed in the info or warning. It cannot be null.
+     * @param LogSrc Tells, where the log message is coming from.
+     * @param error The throwable which it should display on the console
+     */
     public void log(@Nonnull LogTypes logTypes, @Nonnull String message, String LogSrc, @Nonnull Throwable error)
     {
         if (logTypes.equals(LogTypes.INFO))
