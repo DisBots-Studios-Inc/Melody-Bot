@@ -1,6 +1,6 @@
 package com.disbots.commands.help;
 
-import com.disbots.utilities.EmbedColors;
+import com.disbots.util.EmbedColors;
 import de.btobastian.sdcf4j.Command;
 import de.btobastian.sdcf4j.CommandExecutor;
 import de.btobastian.sdcf4j.CommandHandler;
@@ -24,10 +24,13 @@ public class Help implements CommandExecutor
     public void OnHelpCommand(MessageCreateEvent message)
     {
         EmbedBuilder helpEmbed = new EmbedBuilder()
-                .setTitle("Help menu")
-                .setDescription("Here all the commands, the current prefix for this server is `;`.")
+                .setTitle("Help menu (" + commandHandler.getCommands().size() + " commands" + ")")
+                .setThumbnail(message.getApi().getYourself().getAvatar())
                 .setFooter(message.getMessageAuthor().getDisplayName(), message.getMessageAuthor().getAvatar())
                 .setColor(EmbedColors.NEUTRAL.getCode());
+
+        StringBuilder commandsString;
+        commandsString = new StringBuilder();
         for (CommandHandler.SimpleCommand simpleCommand : commandHandler.getCommands())
         {
             String prefix = "<@767729072540221491>";
@@ -55,8 +58,18 @@ public class Help implements CommandExecutor
                 description = "None";
             }
 
-            helpEmbed.addField("Command - " + name, "**Description:** " + description + "\n" + "**Aliases:** " + String.join(", ", aliases) + "\n" + "**Usage:** " + "`" + prefix + usage + "`", true);
+            commandsString
+                    .append("**Command Name:** ").append(name).append("\n")
+                    .append("**Description:** ").append(description).append("\n")
+                    .append("**Aliases:** ").append(String.join(", ", aliases)).append("\n")
+                    .append("**Usage:** ").append("`").append(prefix).append(usage).append("`").append("\n")
+                    .append("--------------------").append("\n");
+
+//            helpEmbed.addField("Command - " + name, "**Description:** " + description + "\n" + "**Aliases:** " + String.join(", ", aliases) + "\n" + "**Usage:** " + "`" + prefix + usage + "`", true);
         }
+
+        helpEmbed.setDescription("Here are all the commands with their description and usage." + "\n\n" + String.valueOf(commandsString));
         message.getChannel().sendMessage(helpEmbed);
+
     }
 }

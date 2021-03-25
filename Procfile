@@ -1,1 +1,1 @@
-worker: java -jar build/libs/Melody-Bot-0.2.0b-all.jar
+worker: java -jar /libs/Melody-Bot-0.3.0b_rc1-all.jar -XX:+HeapDumpOnOutOfMemoryError -Xmx64m -Xms64m

@@ -1,6 +1,6 @@
 package com.disbots.commands.system;
 
-import com.disbots.utilities.EmbedColors;
+import com.disbots.util.EmbedColors;
 import de.btobastian.sdcf4j.Command;
 import de.btobastian.sdcf4j.CommandExecutor;
 import org.javacord.api.entity.message.embed.EmbedBuilder;

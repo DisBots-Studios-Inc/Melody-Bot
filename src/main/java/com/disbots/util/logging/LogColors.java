@@ -1,6 +1,6 @@
-package com.disbots.utilities;
+package com.disbots.util.logging;
 
-enum LogColors
+public enum LogColors
 {
     //Color end string, color reset
     RESET("\033[0m"),

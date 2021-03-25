@@ -10,7 +10,7 @@ Open an issue on our issue tracker at GitHub, and we will reach out to you.
 
 # ⚙ Configuration
 
-## 🤔 Prerequisites 
+## 🤔 Prerequisites (Is being moved to new wiki soon!)
 - Basic knowledge of Java and Gradle.
 - Editor or IDE
 - Discord bots API

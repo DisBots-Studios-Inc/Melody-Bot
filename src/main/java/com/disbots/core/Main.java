@@ -3,9 +3,15 @@ package com.disbots.core;
 import com.disbots.commands.help.Help;
 import com.disbots.commands.information.BotInfo;
 import com.disbots.commands.information.Ping;
+import com.disbots.commands.music.Play;
+import com.disbots.commands.music.Stop;
 import com.disbots.commands.system.Github;
 import com.disbots.commands.system.Uptime;
-import com.disbots.utilities.Log;
+import com.disbots.util.logging.Log;
+import com.disbots.util.logging.LogTypes;
+import com.google.api.client.googleapis.json.GoogleJsonResponseException;
+import com.google.api.services.youtube.YouTube;
+import com.google.api.services.youtube.model.SearchListResponse;
 import de.btobastian.sdcf4j.CommandHandler;
 import de.btobastian.sdcf4j.handler.JavacordHandler;
 import org.javacord.api.DiscordApi;
@@ -13,29 +19,36 @@ import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.activity.ActivityType;
 import org.javacord.api.entity.user.UserStatus;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.Arrays;
 
-public class Main
-{
-    /* Getting the variables we need */
-    public static final String Prefix = ";";
-    private static final Log logger = new Log();
+import static com.disbots.core.YoutubeApiService.getService;
 
-    public static void main(String[] args)
+public class Main extends Thread
+{
+    public static final String Prefix = ";";
+    public static Log logger = new Log();
+    public static final String DEVELOPER_KEY = System.getenv().get("DEVELOPER_KEY");
+
+    public static void main(String[] args) throws GeneralSecurityException, IOException
     {
         /* Logging stuff */
-        logger.info("Starting bot...", "client");
+        logger.log(LogTypes.INFO, "Starting bot...", "client");
 
         /* Making out Client and Updating it's status and Activity. */
+
         DiscordApi Bot = new DiscordApiBuilder().setToken(System.getenv().get("TOKEN")).setAllIntents().login().join();
+
         Bot.updateStatus(UserStatus.IDLE);
         Bot.updateActivity(ActivityType.LISTENING, "Melodies!");
 
-        /* Forgoing Normal JavaCord commands for sdcf4j command handler and setting default prefix */
+        /* Forgoing Normal JavaCord commands for SDCF4J command handler and setting default prefix */
         CommandHandler handler = new JavacordHandler(Bot);
         handler.setDefaultPrefix(Prefix);
 
-        logger.info("Loading resources...", "client");
+        logger.log(LogTypes.INFO, "Loading resources...", "client");
+        logger.log(LogTypes.INFO, "Loading commands...", "client");
 
         /* Registering All commands and Logging them. */
         handler.registerCommand(new Help(handler));
@@ -43,8 +56,11 @@ public class Main
         handler.registerCommand(new Ping());
         handler.registerCommand(new Uptime());
         handler.registerCommand(new BotInfo());
+        handler.registerCommand(new Play());
+        handler.registerCommand(new Stop());
 
-        logger.info("Loaded " + Arrays.stream(handler.getCommands().toArray()).count() + " commands!", "commands");
-        logger.info("Loaded resources! Ready for operation!", "client");
+        logger.log(LogTypes.INFO, "Loaded " + Arrays.stream(handler.getCommands().toArray()).count() + " commands!", "client");
+        logger.log(LogTypes.INFO, "Loaded resources! Ready for operation!", "client");
+
     }
 }
