@@ -21,7 +21,7 @@ dependencies {
     // Javacord
     implementation 'org.javacord:javacord:3.1.2'
     // Log4j (logging for Javacord)
-    runtimeOnly 'org.apache.logging.log4j:log4j-core:2.11.0'
+    runtimeOnly 'org.apache.logging.log4j:log4j-core:2.14.1'
     // Command framework; sdcf4j
     implementation 'de.btobastian.sdcf4j:sdcf4j-core:1.0.10'
     implementation 'de.btobastian.sdcf4j:sdcf4j-javacord:1.0.10'
