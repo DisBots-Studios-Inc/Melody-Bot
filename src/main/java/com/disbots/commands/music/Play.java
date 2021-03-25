@@ -52,7 +52,7 @@ public class Play implements CommandExecutor
             // Define and execute the API request
             YouTube.Search.List request = youtubeService.search()
                     .list("snippet");
-            SearchListResponse response = request.setMaxResults(5L).setKey(DEVELOPER_KEY)
+            SearchListResponse response = request.setMaxResults(1L).setKey(DEVELOPER_KEY)
                     .setOrder("viewCount")
                     .setQ(args[0])
                     .execute();
