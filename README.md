@@ -33,6 +33,48 @@ chmod +x gradlew
 Make a new environmental variable called `TOKEN` and give it the value of your bots token. (music config part to be updated on wiki)
 
 ### Running it
-Just run it using the arrow button on IntelliJ or any other IDE.
+Just run it using the play button on IntelliJ or any other IDE.
 
+## 📖 Website
+<hr>
 
+If you want to commit to our website then do the following:
+
+## 🙌 Contribution
+Simply open a pull request with the template we have provided. Describe your changes and how they may affect the current project. Also be sure to append the "Website - " before your pull request.
+
+## ❗ Bugs/Features
+Open an issue on our issue tracker at GitHub, and we will reach out to you. Be sure to append "Website - " before the issue name! Like this:
+```
+Website - xxx is wrong documentation.
+```
+
+## ⚙ Configuration
+<hr>
+
+### 🤔 Prerequisites (Is being moved to the new wiki soon!)
+* Basic knowledge of javascript, nodejs and yarn
+* yarn installed
+* yarn installed
+* text editor or IDE
+
+### 🚀 Getting Started
+<hr>
+
+Clone the repo like normal and then run these commands:
+
+```bash
+#cd into website dir
+cd melody-website
+
+#install dependencies:
+yarn
+```
+
+To start the dev server, use in the website dir:
+
+```bash
+yarn start
+```
+
+Additional information will be available once wiki is hosted.

@@ -19,7 +19,6 @@ public class YoutubeApiService
      * Build and return an authorized API client service.
      *
      * @return an authorized API client service
-     * @throws GeneralSecurityException, IOException
      */
     public static YouTube getService() throws GeneralSecurityException, IOException
     {
