@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.disbots'
-version '0.3.0b'
+version '0.4.0b-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -31,8 +31,8 @@ dependencies {
     implementation 'org.json:json:20210307'
     //youtube data api v3
     compile 'com.google.api-client:google-api-client:1.23.0'
-    compile 'com.google.oauth-client:google-oauth-client-jetty:1.23.0'
-    compile 'com.google.apis:google-api-services-youtube:v3-rev222-1.25.0'
+compile 'com.google.oauth-client:google-oauth-client-jetty:1.23.0'
+compile 'com.google.apis:google-api-services-youtube:v3-rev222-1.25.0'
 }
 
 task stage(dependsOn: ['build','shadowJar', 'clean', 'test'])
@@ -41,7 +41,7 @@ build.mustRunAfter test
 
 jar {
     manifest{
-        attributes 'Class-Path': '/libs/Melody-Bot-0.3.0b-all.jar', 'Main-Class': 'com.disbots.core.Main'
+        attributes 'Class-Path': '/libs/Melody-Bot-0.4.0b-SNAPSHOT-all.jar', 'Main-Class': 'com.disbots.core.Main'
     }
 }
 
