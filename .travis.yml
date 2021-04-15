@@ -1,14 +1,23 @@
-language: java
+jobs:
+  include:
+    - language: java
+    java:
+      - os: linux
+      - dist: trusty
+      - jdk: oraclejdk11
 
-os: linux
-dist: trusty
-jdk: oraclejdk11
+    before_install:
+      - chmod +x gradle
 
-before_install:
-  - chmod +x gradle
+    script:
+      - ./gradlew stage
 
-before_script:
-  - chmod +x gradle
+    - language: node_js
+      node_js:
+        - 15
 
-script:
-  - ./gradlew build
+    before_script:
+      - cd melody-website
+
+    script:
+      - yarn build
