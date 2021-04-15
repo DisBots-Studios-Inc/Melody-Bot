@@ -4,8 +4,11 @@ os: linux
 dist: trusty
 jdk: oraclejdk11
 
+before_install:
+  - chmod +x gradle
+
 before_script:
   - chmod +x gradle
 
 script:
-  - ./gradlew stage
+  - ./gradlew build
