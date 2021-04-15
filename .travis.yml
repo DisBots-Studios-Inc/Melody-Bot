@@ -2,8 +2,10 @@ language: java
 
 os: linux
 dist: trusty
-jdk: oraclejdk11
+jdk: oraclejdk1
+
+before_install:
+  - chmod +x gradle
 
 script:
-  - chmod +x gradlew
   - ./gradlew stage
