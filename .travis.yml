@@ -1,23 +1,23 @@
-jobs:
+matrix:
   include:
     - language: java
-    java:
-      - os: linux
-      - dist: trusty
-      - jdk: oraclejdk11
-
-    before_install:
-      - chmod +x gradle
-
-    script:
-      - ./gradlew stage
+      java:
+        - os: linux
+        - dist: trusty
+        - jdk: oraclejdk11
+      before_install:
+        - chmod +x gradle
+      install:
+        - ./gradlew assemble
+      script:
+        - ./gradlew stage
 
     - language: node_js
       node_js:
         - 15
-
-    before_script:
-      - cd melody-website
-
-    script:
-      - yarn build
+      before_install:
+        - cd melody-website
+      install:
+        - yarn install
+      script:
+        - yarn build
