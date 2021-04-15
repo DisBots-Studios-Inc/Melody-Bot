@@ -2,6 +2,9 @@
 Melody is a music bot written in Java. It features various functions with the main focus on music.  
 It is in active development and is being improved every week.
 
+Here is the current build status:
+[![Build Status](https://travis-ci.com/DisBots-Studios-Inc/Melody-Bot.svg?branch=main)](https://travis-ci.com/DisBots-Studios-Inc/Melody-Bot)
+
 ## 🙌 Contribution
 Simply open a pull request with the template we have provided. Describe your changes and how they may affect the current project.
 
