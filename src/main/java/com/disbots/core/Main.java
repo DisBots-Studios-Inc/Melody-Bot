@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.Arrays;
 
-public class Main extends Thread
+public class Main
 {
     public static final String Prefix = ";";
     public static Log logger = new Log();
