@@ -5,8 +5,6 @@ import com.disbots.util.emojis.IEmojis;
 import com.disbots.util.logging.Log;
 import com.disbots.util.logging.LogTypes;
 import com.disbots.util.music.LavaPlayerAudioSource;
-import com.google.api.services.youtube.YouTube;
-import com.google.api.services.youtube.model.SearchListResponse;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
@@ -22,18 +20,11 @@ import org.javacord.api.entity.channel.ServerVoiceChannel;
 import org.javacord.api.entity.message.Message;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
-import org.json.JSONObject;
 
-import java.io.IOException;
-import java.security.GeneralSecurityException;
-import java.time.Duration;
 import java.util.NoSuchElementException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
-
-import static com.disbots.core.Main.DEVELOPER_KEY;
-import static com.disbots.core.YoutubeApiService.getService;
 
 public class Play implements CommandExecutor
 {
