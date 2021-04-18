@@ -6,8 +6,6 @@ Here is the current build/release status:
 
 [![Build Status](https://travis-ci.com/DisBots-Studios-Inc/Melody-Bot.svg?branch=main)](https://travis-ci.com/DisBots-Studios-Inc/Melody-Bot)
 
-[![Latest release](https://img.shields.io/github/release/DisBots-Studios-Inc/Melody-Bot.svg)](https://github.com/DisBots-Studios-Inc/Melody-Bot/releases/latest)
-
 ## 🙌 Contribution
 Simply open a pull request with the template we have provided. Describe your changes and how they may affect the current project.
 
