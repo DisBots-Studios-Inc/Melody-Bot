@@ -1,5 +1,6 @@
 package com.disbots.core;
 
+import com.disbots.core.api.YoutubeApiService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
