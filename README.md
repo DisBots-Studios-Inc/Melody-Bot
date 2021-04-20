@@ -1,7 +1,7 @@
 # 🎵 Melody Bot
 
 **ATTENTION: THIS PROJECT IS NOT MAINTAINED ANYMORE!!!**
-Official successor is **"Quabot.** You can find it in this organisation.
+Official successor is **"Quabot."** You can find it in this organisation.
 
 Melody is a music bot written in Java. It features various functions with the main focus on music.  
 It is in active development and is being improved every week.
