@@ -5,6 +5,7 @@ import com.disbots.util.emojis.IEmojis;
 import com.disbots.util.logging.Log;
 import com.disbots.util.logging.LogTypes;
 import com.disbots.util.music.LavaPlayerAudioSource;
+import com.google.api.services.youtube.YouTube;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
@@ -36,23 +37,6 @@ public class Play implements CommandExecutor
 
        try
         {
-            /*
-            TODO: Enable youtube api.
-
-            YouTube youtubeService = getService();
-            // Define and execute the API request
-            YouTube.Search.List request = youtubeService.search()
-                    .list("snippet");
-            SearchListResponse response = request.setMaxResults(1L).setKey(DEVELOPER_KEY)
-                    .setOrder("viewCount")
-                    .setQ(args[0])
-                    .execute();
-
-            JSONObject httpResponse = new JSONObject(response);
-
-            System.out.println(httpResponse.get("videoId"));
-            */
-
             voiceChannel = message.getMessageAuthor().getConnectedVoiceChannel().get();
 
             EmbedBuilder LoadingEmbed = new EmbedBuilder()

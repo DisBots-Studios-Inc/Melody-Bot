@@ -1,4 +1,4 @@
-package com.disbots.core;
+package com.disbots.core.api;
 
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
